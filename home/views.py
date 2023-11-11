@@ -4,6 +4,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.urls import reverse_lazy
 from home.models import Criticas
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 def home(request):
@@ -25,14 +27,14 @@ class ListadoCriticas(ListView):
     template_name = 'home/criticas.html'
 
 
-class CrearCritica(CreateView):
+class CrearCritica(LoginRequiredMixin, CreateView):
     model = Criticas
     template_name = "home/crear_criticas.html"
     fields = ['titulo', 'critica', 'autor', 'fecha_creacion']
     success_url = reverse_lazy('criticas')
 
 
-class ActualizarCritica(UpdateView):
+class ActualizarCritica(LoginRequiredMixin, UpdateView):
     model = Criticas
     template_name = "home/actualizar_criticas.html"
     fields = ['titulo', 'critica', 'autor', 'fecha_creacion']
@@ -44,7 +46,7 @@ class DetalleCritica(DetailView):
     template_name = "home/detalle_critica.html"
 
 
-class EliminarCritica(DeleteView):
+class EliminarCritica(LoginRequiredMixin, DeleteView):
     model = Criticas
     template_name = "home/eliminar_critica.html"
     success_url = reverse_lazy('criticas')
