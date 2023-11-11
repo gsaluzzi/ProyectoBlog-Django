@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate, login as django_login
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from cuentas.forms import MiFormularioDeCreacion, EdicionPerfil
+from cuentas.models import DatosExtra
 
 def login(request):
     
@@ -19,7 +20,7 @@ def login(request):
             
             django_login(request, user)
             
-            # DatosExtra.objects.get_or_create(user=request.user)
+            DatosExtra.objects.get_or_create(user=request.user)
             
             return redirect('home')
               
@@ -43,17 +44,27 @@ def registro(request):
 
 def editar_perfil(request):
     
-      
-    formulario = EdicionPerfil(instance=request.user)
+    datos_extra = request.user.datosextra
+    
+    formulario = EdicionPerfil(instance=request.user, initial={'biografia': datos_extra.biografia, 'avatar': datos_extra.avatar})
     
     if request.method == 'POST':
-        formulario = EdicionPerfil(request.POST, instance=request.user)
+        formulario = EdicionPerfil(request.POST, request.FILES, instance=request.user)
         
-        if formulario.is_valid():         
-
-          
-            formulario.save()            
+        if formulario.is_valid():
             
+            nueva_biografia = formulario.cleaned_data.get('biografia')
+            nueva_avatar = formulario.cleaned_data.get('avatar')
+            
+            if nueva_biografia:
+                datos_extra.biografia = nueva_biografia
+            if nueva_avatar:
+                datos_extra.avatar = nueva_avatar
+            
+            datos_extra.save()
+            formulario.save()
+            
+            return redirect('editar_perfil')
     
     return render(request, 'cuentas/editar_perfil.html', {'formulario': formulario})
 
