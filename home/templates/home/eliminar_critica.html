@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title_body1 %}
+<h1> Eliminar Críticas</h1>
+{% endblock title_body1 %}
+
+{% block title_body2 %}
+                       
+{% endblock title_body2 %}
+
+{% block main %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    Desea eliminar la crítica {{criticas.titulo}} - {{criticas.autor}} - {{criticas.fecha_creacion}}?
+    <input type="submit" value="Confirmar">
+</form>
+
+<a href={% url "criticas"  %}>
+    <button> Salir → </button>
+</a>
+
+
+{% endblock main %}

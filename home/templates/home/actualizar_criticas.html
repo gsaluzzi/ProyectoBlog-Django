@@ -1,8 +1,7 @@
-
 {% extends "base.html" %}
 
 {% block title_body1 %}
-<h1> Críticas</h1>
+<h1> Actualizar Críticas</h1>
 {% endblock title_body1 %}
 
 {% block title_body2 %}
@@ -17,7 +16,14 @@
     {{form.media}} 
     {{form}}
     </table>
-    <input type="submit" value="Crear">
+    <input type="submit" value="Actualizar">
 </form>
 
+<a href={% url "criticas"  %}>
+    <button> Salir → </button>
+</a>
+
+
 {% endblock main %}
+
+

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title_body1 %}
+<h1> detalle Críticas</h1>
+{% endblock title_body1 %}
+
+{% block title_body2 %}
+Detalle {{criticas.id}}          
+{% endblock title_body2 %}
+
+{% block main %}
+
+<ul>
+    <li>Titulo: {{criticas.titulo}}</li>
+    <li>Autor: {{criticas.autor}}</li>
+    <li>Descripción: {{criticas.critica | safe }}</li>
+    <li>Fecha de creacion: {{criticas.fecha_creacion}}</li>
+</ul>
+
+{% endblock main %}
+
+

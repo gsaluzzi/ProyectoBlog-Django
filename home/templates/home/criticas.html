@@ -20,7 +20,7 @@
 <ul>
     {% for critica in listado_de_criticas %}
     <li> 
-        {{critica}}
+        <a href={% url "detalle_critica" critica.id %}>{{critica}}</a> | <a href={% url "actualizar_critica" critica.id %}>Actualizar</a> | <a href={% url "eliminar_critica" critica.id %}>Eliminar</a>
     </li>
         {% endfor %}
 </ul>
