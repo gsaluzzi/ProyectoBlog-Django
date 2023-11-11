@@ -1,0 +1,33 @@
+
+{% extends "base.html" %}
+
+{% block title_body1 %}
+<h1> Críticas</h1>
+{% endblock title_body1 %}
+
+{% block title_body2 %}
+                       
+{% endblock title_body2 %}
+
+{% block main %}
+
+<p>
+    <a href={% url "crear_critica" %}>Crear Nueva Crítica</a>
+</p>
+
+
+{% if listado_de_criticas %}
+<ul>
+    {% for critica in listado_de_criticas %}
+    <li> 
+        {{critica}}
+    </li>
+        {% endfor %}
+</ul>
+{% else %}
+<p>Aún no hay críticas.</p>
+{% endif %}
+
+
+{% endblock main %}
+

@@ -1,0 +1,23 @@
+
+{% extends "base.html" %}
+
+{% block title_body1 %}
+<h1> Críticas</h1>
+{% endblock title_body1 %}
+
+{% block title_body2 %}
+                       
+{% endblock title_body2 %}
+
+{% block main %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+    {{form.media}} 
+    {{form}}
+    </table>
+    
+</form>
+
+{% endblock main %}
