@@ -5,6 +5,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from cuentas.forms import MiFormularioDeCreacion, EdicionPerfil
 from cuentas.models import DatosExtra
+# from django.contrib.auth.models import User
 
 def login(request):
     
@@ -64,12 +65,17 @@ def editar_perfil(request):
             datos_extra.save()
             formulario.save()
             
-            return redirect('editar_perfil')
+            return redirect('detalle_perfil')
     
     return render(request, 'cuentas/editar_perfil.html', {'formulario': formulario})
 
 class CambiarPassword(PasswordChangeView):
     template_name = 'cuentas/cambiar_password.html'
     success_url = reverse_lazy('editar_perfil')
+
+def detalle_perfil(request):
+    return render(request, 'cuentas/detalle_perfil.html',{})
+
+
 
 # Create your views here.

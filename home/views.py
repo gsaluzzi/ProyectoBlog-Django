@@ -30,14 +30,14 @@ class ListadoCriticas(ListView):
 class CrearCritica(LoginRequiredMixin, CreateView):
     model = Criticas
     template_name = "home/crear_criticas.html"
-    fields = ['titulo', 'critica', 'autor', 'fecha_creacion']
+    fields = ['titulo', 'critica', 'autor', 'imagen_pelicula', 'fecha_creacion']
     success_url = reverse_lazy('criticas')
 
 
 class ActualizarCritica(LoginRequiredMixin, UpdateView):
     model = Criticas
     template_name = "home/actualizar_criticas.html"
-    fields = ['titulo', 'critica', 'autor', 'fecha_creacion']
+    fields = ['titulo', 'critica', 'autor', 'imagen_pelicula','fecha_creacion']
     success_url = reverse_lazy('criticas')
 
 

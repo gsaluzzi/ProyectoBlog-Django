@@ -12,9 +12,16 @@ Detalle {{criticas.id}}
 
 <ul>
     <li>Titulo: {{criticas.titulo}}</li>
+    {% if criticas.imagen_pelicula %}
+    
+        <img src={{criticas.imagen_pelicula.url}} alt="pelicula" height='200px'>
+    
+        {% else %}
+        
+        {% endif %}
     <li>Autor: {{criticas.autor}}</li>
-    <li>Descripción: {{criticas.critica | safe }}</li>
-    <li>Fecha de creacion: {{criticas.fecha_creacion}}</li>
+    <li>Detalle Crítica: {{criticas.critica | safe }}</li>
+    <li>Fecha de Creacion: {{criticas.fecha_creacion}}</li>
 </ul>
 
 {% endblock main %}

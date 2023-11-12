@@ -34,7 +34,7 @@
                         <li class="nav-item"><a class="btn btn-secondary" href={% url "registro" %}>Registrarse</a></li>
                         {% else %}
                         <li class="nav-item">
-                        <a class="nav-link px-lg-3 py-3 py-lg-4" href={% url "editar_perfil" %}>
+                        <a class="nav-link px-lg-3 py-3 py-lg-4" href={% url "detalle_perfil" %}>
                             {% if request.user.datosextra.avatar %}
                         <img src={{request.user.datosextra.avatar.url}} alt="avatar" height='20px'>
                         {% endif %}
