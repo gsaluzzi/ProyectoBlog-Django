@@ -11,7 +11,7 @@ class Criticas(models.Model):
     imagen_pelicula = models.ImageField(upload_to='imagen', null=True, blank=True)
     
     def __str__(self):
-        return f'{self.id} - {self.titulo} - {self.autor} - {self.fecha_creacion}'
+        return f'{self.titulo} - {self.autor} - {self.fecha_creacion}'
 
 
 # Create your models here.
