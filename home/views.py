@@ -25,6 +25,17 @@ class ListadoCriticas(ListView):
     model = Criticas
     context_object_name = 'listado_de_criticas'
     template_name = 'home/criticas.html'
+    
+    def get_queryset(self):
+        titulo = self.request.GET.get('titulo', '')
+        if titulo:
+            listado_de_automoviles = self.model.objects.filter(titulo__icontains=titulo)
+        else:
+            listado_de_automoviles = self.model.objects.all()
+        return listado_de_automoviles
+    
+    
+    
 
 
 class CrearCritica(LoginRequiredMixin, CreateView):

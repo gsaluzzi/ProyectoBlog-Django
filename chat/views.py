@@ -3,6 +3,7 @@ from django.views.generic.list import ListView
 from django.contrib.auth.models import User
 from chat.forms import CrearMensajeFormulario
 from chat.models import Mensaje
+from django.contrib.auth.decorators import login_required
 
 class ListadoUsuarios(ListView):
     model = User
@@ -17,7 +18,7 @@ class ListadoUsuarios(ListView):
 #    return render(request, 'chat/conversacion.html', {'usuario':usuario})
 
 
-
+@login_required
 def crear_mensaje(request, user_id):  
     usuario = User.objects.get(id=user_id)
     listado_de_mensajes = Mensaje.objects.all()

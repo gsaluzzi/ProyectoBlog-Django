@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Mensaje(models.Model):
-    mensaje = models.CharField(max_length=100)
+    mensaje = models.CharField(max_length=200)
     destinatario = models.CharField(max_length=30)
     emisor = models.CharField(max_length=30)
     

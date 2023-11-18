@@ -11,7 +11,7 @@
 {% endblock title_body1 %}
 
 {% block title_body2 %}
-    chat con   
+    chat con  {{usuario.username}}
 {% endblock title_body2 %}
 
 {% block main %}
@@ -23,18 +23,14 @@
     {% for mensaje in listado_de_mensajes %}
         {% if mensaje.emisor == request.user.username and mensaje.destinatario == usuario.username %}
          <li> 
-            <a> {{mensaje.emisor}} escribió a {{usuario.username}}: </a>
+            <a> <strong>{{mensaje.emisor}}</strong> escribió: <mark><em>{{mensaje.mensaje}}</em></mark> </a>
          </li>
+
+        {% elif mensaje.emisor == usuario.username and mensaje.destinatario == request.user.username %}
          <li> 
-            <a> {{mensaje.mensaje}} </a>
-        </li>
-        {% elif mensaje.emisor == rusuario.username and mensaje.destinatario == request.user.username %}
-         <li> 
-            <a> {{usuario.username}} escribió a {{mensaje.emisor}}: </a>
+            <a> <mark><strong>{{mensaje.emisor}}</strong> te escribió:</mark> <em>{{mensaje.mensaje}}</em> </a>
          </li>
-         <li> 
-            <a> {{mensaje.mensaje}} </a>
-        </li>
+       
 
         {% endif %}
     {% endfor %}
@@ -42,6 +38,8 @@
     {% else %}
     <p>Aun no se han enviado mensajes.</p>
     {% endif %}
+
+    <p>Nuevo mensaje a <strong>{{usuario.username}}</strong> :</p>
     <form action="" method="POST">
         {% csrf_token %}
         <table>

@@ -4,5 +4,5 @@ from django import forms
 
 class CrearMensajeFormulario(forms.Form):
         
-    mensaje = forms.CharField(max_length=100)
+    mensaje = forms.CharField(max_length=200, required=False, widget=forms.Textarea)
     
