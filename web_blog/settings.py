@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'home',
     'ckeditor',
     'cuentas',
+    'chat'
 ]
 
 MIDDLEWARE = [

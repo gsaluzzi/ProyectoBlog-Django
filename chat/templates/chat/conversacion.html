@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block header_img %}
+<header class="masthead" style="background-image: url('{% static "assets/img/palomitas.jpg" %}">
+{% endblock header_img %}
+
+{% block title_body1 %}
+<h1> Conversacion</h1>
+{% endblock title_body1 %}
+
+{% block title_body2 %}
+    chat con   
+{% endblock title_body2 %}
+
+{% block main %}
+
+{% csrf_token %}
+<ul>    
+    
+    {% if listado_de_mensajes %}
+    {% for mensaje in listado_de_mensajes %}
+        {% if mensaje.emisor == request.user.username and mensaje.destinatario == usuario.username %}
+         <li> 
+            <a> {{mensaje.emisor}} escribió a {{usuario.username}}: </a>
+         </li>
+         <li> 
+            <a> {{mensaje.mensaje}} </a>
+        </li>
+        {% elif mensaje.emisor == rusuario.username and mensaje.destinatario == request.user.username %}
+         <li> 
+            <a> {{usuario.username}} escribió a {{mensaje.emisor}}: </a>
+         </li>
+         <li> 
+            <a> {{mensaje.mensaje}} </a>
+        </li>
+
+        {% endif %}
+    {% endfor %}
+
+    {% else %}
+    <p>Aun no se han enviado mensajes.</p>
+    {% endif %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{formulario_mensaje}}
+        </table>
+        <input type="submit" value="Enviar">
+    </form>
+
+
+</ul>
+
+{% endblock main %}

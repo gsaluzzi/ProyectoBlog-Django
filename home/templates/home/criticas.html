@@ -8,7 +8,7 @@
 {% endblock header_img %}
 
 {% block title_body1 %}
-<h1> Críticas</h1>
+<h1> Lista de críticas</h1>
 {% endblock title_body1 %}
 
 {% block title_body2 %}
@@ -18,21 +18,38 @@
 {% block main %}
 
 <p>
-    <a href={% url "crear_critica" %}>Crear Nueva Crítica</a>
+    <a class="btn btn-primary text-uppercase" href={% url "crear_critica" %}>Crear Nueva Crítica</a>
 </p>
 
+<div class="container px-4 px-lg-5">
+    <div class="row gx-4 gx-lg-5 justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-7">
 
-{% if listado_de_criticas %}
-<ul>
-    {% for critica in listado_de_criticas %}
-    <li> 
-        <a href={% url "detalle_critica" critica.id %}>{{critica}}</a> | <a href={% url "actualizar_critica" critica.id %}>Actualizar</a> | <a href={% url "eliminar_critica" critica.id %}>Eliminar</a>
-    </li>
-        {% endfor %}
-</ul>
-{% else %}
+    {% if listado_de_criticas %}
+          
+          {% for critica in listado_de_criticas %}
+          <div class="post-preview">
+            <a href={% url "detalle_critica" critica.id %}>
+                <h2 class="post-title">{{critica.titulo}}</h2>
+                <h4 class="post-subtitle">Haz clic aqui para ver el detalle</h4>
+            </a>
+            <p class="post-meta">
+                Posteado por
+                <a>{{critica.autor}}</a>
+                el dia {{critica.fecha_creacion}}
+            </p>
+            <a class="btn btn-secondary btn-sm" href={% url "actualizar_critica" critica.id %}>Actualizar</a> | <a class="btn btn-secondary btn-sm" href={% url "eliminar_critica" critica.id %}>Eliminar</a>
+            </div>
+            <!-- Divider-->
+            <hr class="my-4" />   
+            {% endfor %}      
+        </div>
+    </div>
+</div>
+    {% else %}
 <p>Aún no hay críticas.</p>
 {% endif %}
+
 
 
 {% endblock main %}
